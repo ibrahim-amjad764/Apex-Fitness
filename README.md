@@ -2,7 +2,6 @@
 
 A premium, modern, and fully responsive gym/fitness website built with Next.js 14, Tailwind CSS, TypeScript, and Framer Motion.
 
-![Apex Fitness](public/images/hero-bg.jpg)
 
 ## Features
 
