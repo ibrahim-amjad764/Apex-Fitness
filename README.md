@@ -950,33 +950,6 @@ export function Component({ prop }: Props) {
 }
 ```
 
-### Adding New Pages
-
-1. Create directory in `src/app/[page-name]/`
-2. Create `page.tsx` file
-3. Add page to navigation in `src/components/navbar.tsx`
-4. Add link in footer if needed in `src/components/footer.tsx`
-5. Test page navigation
-
-### Adding New Components
-
-1. Create component file in appropriate directory:
-   - `src/components/ui/` for reusable UI components
-   - `src/components/sections/` for page sections
-2. Export component as named export
-3. Add TypeScript interfaces for props
-4. Add to `src/types/index.ts` if types are shared
-5. Document component with JSDoc comments
-
-### Theme Support
-
-When adding new components:
-- Use `dark:` variants for all colors
-- Use `text-slate-900 dark:text-white` pattern for text
-- Use `bg-white dark:bg-slate-900` pattern for backgrounds
-- Use `border-slate-200 dark:border-slate-800` pattern for borders
-- Test in both light and dark modes
-
 ## Contributing
 
 ### Contribution Guidelines
@@ -1001,15 +974,6 @@ refactor: refactor code
 test: add tests
 chore: update dependencies
 ```
-
-### Code Review Process
-
-1. Ensure code follows guidelines
-2. Check for TypeScript errors
-3. Test in both light and dark modes
-4. Verify responsive design
-5. Check console for errors
-6. Ensure no console.log statements in production code
 
 ## Future Improvements
 
@@ -1064,89 +1028,3 @@ This project is private. No license information is provided in the repository.
 
 ---
 
-## Summary
-
-### What Was Analyzed
-
-- Complete repository structure and file organization
-- All source files in `src/` directory
-- Configuration files (Next.js, TypeScript, Tailwind, ESLint)
-- Package dependencies and scripts
-- Component architecture and relationships
-- Type definitions and data models
-- Custom hooks and their usage
-- Theme system implementation
-- Form validation approach
-- Animation system with Framer Motion
-
-### What Was Documented
-
-- Project overview and purpose
-- Complete technology stack
-- Architecture patterns and data flow
-- Detailed project structure
-- Core features and their implementation
-- Installation and setup instructions
-- Development workflow
-- Available commands
-- Security considerations
-- Known limitations
-- Performance considerations
-- Development guidelines
-- Future improvement opportunities
-
-### Major Architecture Discovered
-
-- **Client-side rendered** Next.js App Router application
-- **File-based routing** with page components in `src/app/`
-- **Component-based architecture** with reusable UI components
-- **Context-based state management** for theme
-- **Custom hooks** for reusable logic (animations, calculations)
-- **TypeScript strict mode** for type safety
-- **Tailwind CSS v4** for styling with dark mode support
-- **Framer Motion** for animations
-- **No backend or database** (static site)
-
-### Major Features Documented
-
-1. **Theme System**: Dark/light mode with system preference detection
-2. **BMI Calculator**: Interactive tool with metric/imperial support
-3. **Membership System**: Three-tier pricing with checkout flow
-4. **Payment Checkout**: Multi-method payment with validation
-5. **Blog System**: 7 blog posts with detail pages
-6. **Service Pages**: 6 detailed service pages
-7. **Chatbot**: Interactive support component
-8. **Contact Form**: Validated form with React Hook Form + Zod
-
-### Diagrams Added
-
-- Architecture diagram showing component relationships
-- Page navigation flow sequence diagram
-- Theme toggle flow sequence diagram
-- Form validation flow sequence diagram
-
-### Confirmed Limitations
-
-- No backend or database
-- No real payment processing
-- No real form submission
-- No authentication system
-- No automated tests
-- Extensive console logging in production code
-- Hardcoded data in components
-
-### Documentation Gaps
-
-- No API documentation (no APIs exist)
-- No database schema (no database exists)
-- No authentication flow (no authentication exists)
-- No deployment architecture (no deployment config exists)
-
-### Assumptions That Could Not Be Verified
-
-- No deployment platform specified
-- No CI/CD pipeline configured
-- No analytics integration present
-- No monitoring tools configured
-- No A/B testing framework
-- No content management system integration
