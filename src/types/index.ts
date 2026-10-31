@@ -1,3 +1,5 @@
+import type { ReactNode } from "react"
+
 // Type definitions for the Apex Fitness application
 
 console.log("[types/index] - Type definitions loaded")
@@ -24,7 +26,7 @@ export interface Service {
   id: string
   title: string
   description: string
-  icon: string
+  icon: React.ReactNode
   features: string[]
   price: string
   duration: string
@@ -126,7 +128,7 @@ export interface Feature {
   id: string
   title: string
   description: string
-  icon: string
+  icon: ReactNode
 }
 
 // Social media link type

@@ -64,11 +64,12 @@ export function useScrollAnimation(threshold = 50) {
 
     window.addEventListener("scroll", handleScroll, { passive: true })
     
-    // Initial state
-    updateScrollState()
+    // Initial state - defer to avoid synchronous setState
+    const timer = setTimeout(updateScrollState, 0)
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
+      clearTimeout(timer)
       console.log("[hooks/useScrollAnimation] - Scroll listener removed")
     }
   }, [updateScrollState])

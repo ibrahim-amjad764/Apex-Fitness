@@ -163,7 +163,7 @@ export function TestimonialsSection() {
                 <div className="flex-1 text-center md:text-left">
                   <Quote className="w-10 h-10 text-orange-500 mb-4 mx-auto md:mx-0" />
                   <p className="text-xl md:text-2xl text-white leading-relaxed mb-6">
-                    "{currentTestimonial.content}"
+                    &ldquo;{currentTestimonial.content}&rdquo;
                   </p>
                   <div>
                     <h4 className="font-bold text-white text-lg">

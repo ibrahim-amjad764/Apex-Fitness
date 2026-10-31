@@ -11,7 +11,7 @@ import type { MembershipPlan, FAQItem } from "@/types"
 console.log("[app/membership/page] - Membership page loaded")
 
 // Membership plans data
-const membershipPlans: MembershipPlan[] = [
+export const membershipPlans: MembershipPlan[] = [
   {
     id: "basic",
     name: "Basic",
@@ -115,24 +115,55 @@ export default function MembershipPage() {
     <>
       {/* Hero Section */}
       <section className="pt-32 pb-24 bg-slate-950 relative overflow-hidden">
+        {/* Animated Background */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-orange-500/10 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl" />
+          <motion.div
+            animate={{
+              backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-red-500/10 to-orange-500/10 bg-[length:400%_400%]"
+          />
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-slate-950/50 to-transparent" />
+          <motion.div
+            animate={{
+              y: [0, -25, 0],
+              x: [0, 12, 0],
+            }}
+            transition={{
+              duration: 14,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-full blur-3xl"
+          />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, type: "spring" }}
             className="text-center max-w-3xl mx-auto"
           >
-            <span className="inline-block px-4 py-2 bg-orange-500/20 text-orange-400 text-sm font-semibold rounded-full mb-6">
-              <Sparkles className="w-4 h-4 inline mr-2" />
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md text-orange-400 text-sm font-semibold rounded-full mb-6 border border-orange-500/20"
+            >
+              {/* <Sparkles className="w-4 h-4" /> */}
               Flexible Plans
-            </span>
+            </motion.span>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Choose Your <span className="text-orange-500">Plan</span>
+              Choose Your{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500 animate-gradient">
+                Plan
+              </span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed">
               No hidden fees, no long-term contracts. Just straightforward pricing 
@@ -143,33 +174,43 @@ export default function MembershipPage() {
       </section>
 
       {/* Pricing Toggle & Cards */}
-      <section className="py-24 bg-slate-50 dark:bg-slate-950">
+      <section className="py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Billing Toggle */}
-          <div className="flex items-center justify-center gap-4 mb-16">
-            <span className={`text-lg font-medium ${!isYearly ? "text-slate-900 dark:text-white" : "text-slate-500"}`}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center justify-center gap-4 mb-16"
+          >
+            <span className={`text-lg font-medium transition-colors ${!isYearly ? "text-slate-900 dark:text-white" : "text-slate-500"}`}>
               Monthly
             </span>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setIsYearly(!isYearly)}
-              className="relative w-16 h-8 bg-slate-200 dark:bg-slate-800 rounded-full p-1 transition-colors"
+              className="relative w-16 h-8 bg-slate-200 dark:bg-slate-800 rounded-full p-1 transition-colors shadow-inner"
               aria-label="Toggle yearly billing"
             >
               <motion.div
                 animate={{ x: isYearly ? 32 : 0 }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                className="w-6 h-6 bg-orange-500 rounded-full shadow-lg"
+                className="w-6 h-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-lg"
               />
-            </button>
-            <span className={`text-lg font-medium ${isYearly ? "text-slate-900 dark:text-white" : "text-slate-500"}`}>
+            </motion.button>
+            <span className={`text-lg font-medium transition-colors ${isYearly ? "text-slate-900 dark:text-white" : "text-slate-500"}`}>
               Yearly
             </span>
             {isYearly && (
-              <span className="px-3 py-1 bg-green-500/20 text-green-600 dark:text-green-400 text-sm font-semibold rounded-full">
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="px-3 py-1 bg-green-500/20 text-green-600 dark:text-green-400 text-sm font-semibold rounded-full"
+              >
                 Save up to 2 months
-              </span>
+              </motion.span>
             )}
-          </div>
+          </motion.div>
 
           {/* Pricing Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
@@ -186,28 +227,38 @@ export default function MembershipPage() {
       </section>
 
       {/* Feature Comparison Table */}
-      <section className="py-24 bg-white dark:bg-slate-900">
+      <section className="py-24 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
               Compare Plans
             </h2>
             <p className="text-slate-600 dark:text-slate-400">
-              See what's included in each membership tier
+              See what&apos;s included in each membership tier
             </p>
-          </div>
+          </motion.div>
 
-          <div className="overflow-x-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="overflow-x-auto rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900"
+          >
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-200 dark:border-slate-800">
+                <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800">
                   <th className="text-left py-4 px-4 font-semibold text-slate-900 dark:text-white">
                     Features
                   </th>
                   <th className="text-center py-4 px-4 font-semibold text-slate-900 dark:text-white">
                     Basic
                   </th>
-                  <th className="text-center py-4 px-4 font-semibold text-orange-500">
+                  <th className="text-center py-4 px-4 font-semibold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
                     Pro
                   </th>
                   <th className="text-center py-4 px-4 font-semibold text-slate-900 dark:text-white">
@@ -217,11 +268,15 @@ export default function MembershipPage() {
               </thead>
               <tbody>
                 {compareFeatures.map((feature, index) => (
-                  <tr
+                  <motion.tr
                     key={feature.name}
-                    className="border-b border-slate-100 dark:border-slate-800/50"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="border-b border-slate-100 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
                   >
-                    <td className="py-4 px-4 text-slate-600 dark:text-slate-400">
+                    <td className="py-4 px-4 text-slate-600 dark:text-slate-400 font-medium">
                       {feature.name}
                     </td>
                     <td className="text-center py-4 px-4">
@@ -233,11 +288,11 @@ export default function MembershipPage() {
                     <td className="text-center py-4 px-4">
                       {renderFeatureValue(feature.elite)}
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
             </table>
-          </div>
+          </motion.div>
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import { Inter, Geist } from "next/font/google"
 import { ThemeProvider } from "@/contexts/theme"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { Chatbot } from "@/components/chatbot"
 import "./globals.css"
 import { cn } from "@/lib/utils";
 
@@ -93,6 +94,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          <Chatbot />
         </ThemeProvider>
       </body>
     </html>
